@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A personal portfolio showcasing web design and development projects.">
+  <title>My Portfolio | Web Designer</title>
+  <style>
+    :root {
+      --ink: #242238;
+      --muted: #6e6a7c;
+      --accent: #8b6bd6;
+      --accent-dark: #6d4db6;
+      --soft: #f3effb;
+      --paper: #fff;
+      --line: #e9e3f2;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      background: #fcfbfe;
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    .wrap { width: min(1100px, 90%); margin: auto; }
+    header {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(252,251,254,.94);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+    nav {
+      min-height: 70px; display: flex; align-items: center;
+      justify-content: space-between; gap: 18px;
+    }
+    .brand { font-weight: 800; font-size: 1.15rem; color: var(--accent-dark); }
+    .nav-links { display: flex; flex-wrap: wrap; gap: 20px; font-size: .95rem; }
+    .nav-links a:hover { color: var(--accent-dark); }
+    .hero {
+      padding: 88px 0 76px;
+      background: radial-gradient(circle at 85% 20%, #eee6ff 0, transparent 32%),
+                  linear-gradient(135deg, #fbf9ff, #f4effc);
+    }
+    .hero-grid { display: grid; grid-template-columns: 1.5fr 1fr; align-items: center; gap: 42px; }
+    .eyebrow { color: var(--accent-dark); font-weight: 700; letter-spacing: .12em; text-transform: uppercase; font-size: .78rem; }
+    h1 { font-size: clamp(2.5rem, 6vw, 4.6rem); line-height: 1.08; margin: 14px 0 18px; }
+    h1 span { color: var(--accent); }
+    .intro { max-width: 620px; color: var(--muted); font-size: 1.08rem; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+    .btn {
+      display: inline-block; padding: 12px 20px; border-radius: 999px;
+      background: var(--accent); color: white; font-weight: 700;
+      border: 2px solid var(--accent); transition: .2s;
+    }
+    .btn:hover { background: var(--accent-dark); border-color: var(--accent-dark); transform: translateY(-2px); }
+    .btn.outline { color: var(--accent-dark); background: transparent; }
+    .hero-card {
+      background: white; border: 1px solid var(--line); border-radius: 28px;
+      padding: 30px; box-shadow: 0 18px 50px rgba(67,45,105,.09);
+    }
+    .monogram {
+      width: 110px; height: 110px; border-radius: 30px; display: grid; place-items: center;
+      margin-bottom: 20px; color: white; font-size: 2.4rem; font-weight: 800;
+      background: linear-gradient(135deg, #b69ce9, #7658bd);
+    }
+    .hero-card p { color: var(--muted); margin-bottom: 0; }
+    section { padding: 76px 0; }
+    .section-head { max-width: 650px; margin-bottom: 32px; }
+    h2 { font-size: clamp(1.9rem, 4vw, 2.7rem); margin: 8px 0 10px; }
+    .section-head p, .muted { color: var(--muted); }
+    .about-box {
+      padding: 28px; border-radius: 22px; background: white; border: 1px solid var(--line);
+    }
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .card {
+      padding: 24px; background: white; border: 1px solid var(--line);
+      border-radius: 20px; transition: .2s;
+    }
+    .card:hover { transform: translateY(-5px); box-shadow: 0 14px 35px rgba(67,45,105,.08); }
+    .card-icon { font-size: 1.8rem; }
+    .card h3 { margin: 12px 0 8px; }
+    .card p { color: var(--muted); margin: 0; }
+    .project { background: var(--soft); }
+    .project-card {
+      display: grid; grid-template-columns: .8fr 1.2fr; gap: 24px;
+      background: white; border: 1px solid var(--line); border-radius: 24px;
+      padding: 26px; align-items: center;
+    }
+    .project-art {
+      min-height: 190px; display: grid; place-items: center; text-align: center;
+      border-radius: 18px; padding: 20px; color: #fff;
+      background: linear-gradient(135deg, #9e83d9, #514078);
+      font-size: 1.5rem; font-weight: 800;
+    }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 15px 0; }
+    .tag { background: var(--soft); color: var(--accent-dark); border-radius: 999px; padding: 5px 11px; font-size: .82rem; }
+    .contact-box {
+      text-align: center; padding: 42px 24px; border-radius: 26px;
+      background: linear-gradient(135deg, #f2ecff, #fff);
+      border: 1px solid var(--line);
+    }
+    footer { padding: 24px 0; text-align: center; color: var(--muted); border-top: 1px solid var(--line); font-size: .9rem; }
+    #topBtn {
+      position: fixed; right: 18px; bottom: 18px; border: 0; cursor: pointer;
+      width: 44px; height: 44px; border-radius: 50%; background: var(--accent);
+      color: white; font-size: 1.2rem; display: none;
+    }
+    @media (max-width: 760px) {
+      .hero-grid, .project-card { grid-template-columns: 1fr; }
+      .cards { grid-template-columns: 1fr; }
+      nav { padding: 14px 0; align-items: flex-start; flex-direction: column; }
+      .nav-links { gap: 12px; }
+      .hero { padding: 60px 0; }
+      section { padding: 58px 0; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="wrap">
+      <a class="brand" href="#home">My Portfolio ✦</a>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow">Hello and welcome</div>
+          <h1>I create <span>beautiful</span> websites.</h1>
+          <p class="intro">I'm a beginner web creator who enjoys turning ideas into clean, attractive and easy-to-use websites. I use modern tools and AI assistance to help bring projects to life.</p>
+          <div class="actions">
+            <a class="btn" href="#projects">View my work</a>
+            <a class="btn outline" href="#contact">Contact me</a>
+          </div>
+        </div>
+        <aside class="hero-card">
+          <div class="monogram">M</div>
+          <h3>Creative Web Designer</h3>
+          <p>Focused on simple design, helpful experiences and learning something new with every project.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">A little about me</div>
+          <h2>Curious mind. Creative work.</h2>
+        </div>
+        <div class="about-box">
+          <p>Welcome to my portfolio! I am learning website design and development by building practical projects. I enjoy choosing colours, arranging content and making websites that look good on both phones and computers.</p>
+          <p class="muted">My goal is to keep improving my skills and create useful websites for individuals and small businesses.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">What I work with</div>
+          <h2>My skills</h2>
+          <p>These are the areas I am learning and practising.</p>
+        </div>
+        <div class="cards">
+          <article class="card"><div class="card-icon">🎨</div><h3>Web Design</h3><p>Page layouts, colour combinations and clean visual presentation.</p></article>
+          <article class="card"><div class="card-icon">💻</div><h3>HTML & CSS</h3><p>Building page structure and styling responsive website sections.</p></article>
+          <article class="card"><div class="card-icon">✨</div><h3>AI-assisted Creation</h3><p>Using AI tools thoughtfully to explore ideas and speed up my workflow.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="project" id="projects">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">Selected work</div>
+          <h2>My project</h2>
+          <p>A project that represents my interest in meaningful, welcoming website experiences.</p>
+        </div>
+        <article class="project-card">
+          <div class="project-art">NOOR<br><span style="font-size:.9rem;font-weight:400">Islamic Website Concept</span></div>
+          <div>
+            <h3>NOOR — Islamic Website</h3>
+            <p class="muted">A colourful and welcoming Islamic website concept, created as a learning project. The aim was to present helpful content in a simple and attractive layout.</p>
+            <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">Responsive design</span></div>
+            <a class="btn" href="https://anoshkaibrahim.github.io/NOOR-/" target="_blank" rel="noopener">View project</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="wrap">
+        <div class="contact-box">
+          <div class="eyebrow">Let's connect</div>
+          <h2>Have a website idea?</h2>
+          <p class="muted">I'd be happy to hear about your project. Add your preferred email or contact link here.</p>
+          <a class="btn" href="mailto:your-email@example.com">Email me</a>
+          <p class="muted" style="font-size:.82rem;margin-top:12px">Before publishing, replace the sample email address with your own.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">© <span id="year"></span> My Portfolio. Made with care.</div>
+  </footer>
+  <button id="topBtn" aria-label="Back to top" title="Back to top">↑</button>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+    const topBtn = document.getElementById("topBtn");
+    window.addEventListener("scroll", () => {
+      topBtn.style.display = window.scrollY > 300 ? "block" : "none";
+    });
+    topBtn.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+  </script>
+</body>
+</html>
